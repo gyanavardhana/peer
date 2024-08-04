@@ -3,4 +3,4 @@ global:
 scrape_configs:
   - job_name: "example-nodejs-app"
     static_configs:
-      - targets: ["VM_IP:3000"]
+      - targets: ["https://74vbfbj8-3000.inc1.devtunnels.ms/"]
