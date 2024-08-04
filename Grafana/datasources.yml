@@ -4,7 +4,7 @@ datasources:
     type: prometheus
     access: proxy
     orgId: 1
-    url: https://live-streaming-server.onrender.com
+    url: https://peer-gtq5.onrender.com/
     basicAuth: false
     isDefault: true
     editable: true
