@@ -3,4 +3,4 @@ global:
 scrape_configs:
   - job_name: "example-nodejs-app"
     static_configs:
-      - targets: ["74vbfbj8-3000.inc1.devtunnels.ms"]
+      - targets: ["live-streaming-server.onrender.com"]
