@@ -77,8 +77,10 @@ function findAvailableRoom() {
     return newRoom;
 }
 
+
 // Start the server on port 3001
 const PORT = 3001;
 server.listen(PORT, '0.0.0.0', () => {
     logger.info(`Socket.IO server running on http://localhost:${PORT}`);
+
 });
