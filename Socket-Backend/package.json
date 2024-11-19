@@ -1,0 +1,22 @@
+{
+    "name": "websocket-chat-server",
+    "version": "1.0.0",
+    "description": "A WebSocket-based chat server with room management",
+    "main": "index.js",
+    "scripts": {
+        "start": "node socket.js",
+        "dev": "nodemon index.js"
+    },
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "http": "0.0.1-security",
+        "socket.io": "^4.6.1",
+        "websocket-chat-server": "file:",
+        "winston": "^3.8.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}
