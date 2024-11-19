@@ -66,6 +66,6 @@ function findAvailableRoom() {
 }
 
 // Start WebSocket server on port 3001
-socketServer.listen(3001, () => {
+socketServer.listen(3001, '0.0.0.0', () => {
     logger.info(`Socket.IO server running on port 3001`);
 });
