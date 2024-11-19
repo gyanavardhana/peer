@@ -1,11 +1,24 @@
-const logger = require('./logger/logger')
+const logger = require('./logger/logger');
 const http = require('http');
+const express = require('express');
 const { Server } = require('socket.io');
 const cors = require('cors');
 
-const socketServer = http.createServer();
-const io = new Server(socketServer, {
-    cors: { origin: '*', methods: ['GET', 'POST'] }
+// Initialize Express
+const app = express();
+app.use(cors()); // Allow CORS for HTTP routes
+app.use(express.json()); // Parse JSON payloads
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data
+
+// Define a simple HTTP route for testing
+app.get('/', (req, res) => {
+    res.send('WebSocket server is running!');
+});
+
+// Create an HTTP server with Express
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: { origin: '*', methods: ['GET', 'POST'] },
 });
 
 // WebSocket logic for chat rooms
@@ -15,7 +28,6 @@ const roomCounts = {};
 
 io.on('connection', (socket) => {
     logger.info('A user connected:', socket.id);
-    
 
     // Assign user to a room with available space or create a new room
     socket.on('joinRoom', () => {
@@ -26,7 +38,7 @@ io.on('connection', (socket) => {
         // Update room count
         roomCounts[room] = (roomCounts[room] || 0) + 1;
         io.to(socket.id).emit('roomCount', roomCounts[room]);
-        io.to(room).emit('message', `User  joined room ${room}`);
+        io.to(room).emit('message', `User joined room ${room}`);
     });
 
     // Handle message sending
@@ -65,7 +77,8 @@ function findAvailableRoom() {
     return newRoom;
 }
 
-// Start WebSocket server on port 3001
-socketServer.listen(3001, () => {
-    logger.info(`Socket.IO server running on port 3001`);
+// Start the server on port 3001
+const PORT = 3001;
+server.listen(PORT, '0.0.0.0', () => {
+    logger.info(`Socket.IO server running on http://localhost:${PORT}`);
 });
